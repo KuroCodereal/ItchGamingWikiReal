@@ -1,0 +1,13 @@
+﻿/*modal-custom*/
+.modal-header-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: #0176FF;
+}
+
+    .modal-header-custom .modal-title {
+        font-size: 20px;
+        color: #ffffff;
+    }

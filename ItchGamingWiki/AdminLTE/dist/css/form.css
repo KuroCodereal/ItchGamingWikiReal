@@ -1,0 +1,46 @@
+﻿.form-detail {
+    border: 1px solid #E0E0E0; 
+    height: 241px; 
+    width: 500px; 
+    border-radius: 3px;
+}
+
+.content_form1 {
+    margin-top: 10px;
+    line-height: 32px;
+}
+
+.cb {
+    width:27px;
+    height:29px;
+    margin-top:2px;
+}
+
+.form-header {
+    width: 60%; 
+    height: 32px; 
+    margin-left: 5px; 
+    line-height: 29px; 
+    font-size: 14px; 
+    background-color: #BAE7FF; 
+    border-radius: 3px;
+}
+
+.sp1 {
+    font-weight: 400;
+    margin-left:5px;
+}
+
+.sp2 {
+    float: right; 
+    margin-right: 5px; 
+    color: #ED5050; 
+    font-weight: 500;
+}
+
+.content_form2 {
+    font-size:14px;
+    line-height: 29px;
+    display:flex
+}
+

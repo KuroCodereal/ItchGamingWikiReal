@@ -1,0 +1,108 @@
+﻿html,body {
+    font-size:14px!important;
+    font-family:"Source Sans Pro";
+    background-color:#faf9f8;
+    margin:0;
+    padding:0;
+    height:100vh;
+    overflow-y: hidden;
+}
+
+
+.height100 {
+    height: 100%;
+}
+
+.mb0px {
+    margin-bottom: 0px!important;
+}
+
+.mb3px {
+    margin-bottom: 3px;
+}
+
+.padding0px {
+    padding: 0 !important;
+}
+
+.white {
+    color: #ffffff!important;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.wid100 {
+    width:100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.content-wrapper {
+    margin-left: 0px !important;
+    background-color: transparent !important;
+    height:100vh;
+}
+
+.card-body {
+    display:flex;
+}
+
+#user-banner {
+    max-width:60%;
+    height:auto;
+}
+
+.margin0 {
+    margin:0;
+}
+
+.copyright {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.fa-user-circle-o,.fa-key {
+    position:absolute;
+    top:6px;
+    left:5px;
+}
+
+input[name=Username],input[name=Password]{
+    padding:0px 0px 0px 30px;
+}
+
+.form-bottom {
+    padding:15px 15px;
+    padding-top:0px;
+}
+
+button[type=submit]{
+    color:#fff;
+    background:#0078d4!important;
+    padding:10px;
+    width:100%;
+    border:0;
+}
+
+.register {
+    text-decoration:dashed;
+}
+
+.nav-log {
+    padding:5px;
+    font-size:20px;
+    font-weight:600;
+}

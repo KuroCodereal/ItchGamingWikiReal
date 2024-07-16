@@ -1,0 +1,16 @@
+﻿body { font-size:14px !important;}
+
+.clearfix {
+    /* The element is pushed below both left and right floated elements */
+    clear:both;
+    content:"";
+}
+
+/* Set padding to keep content from hitting the edges */
+
+/* De su dung :after hay :before bat buoc phai co element content (thg la content:"")*/
+
+/* z index chi hoat dong khi di kem voi thuoc tinh position*/
+
+/*There are two ways to replace NULL with blank values in SQL Server, function ISNULL(), and COALESCE(). Both functions replace the value you provide when the argument is NULL like ISNULL(column, '') will return empty String if the column value is NULL.*/
+

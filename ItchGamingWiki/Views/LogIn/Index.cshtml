@@ -1,0 +1,161 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="" />
+
+    <!-- Font Roboto (not working) -->
+    <link rel="stylesheet" type="text/css" href="~/Content/Reference/Roboto/Roboto-Regular.ttf" />
+    <!-- Theme style -->
+    <link rel="stylesheet" type="text/css" href="~/AdminLTE/dist/css/adminlte.min.css" />
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- iCheck for checkboxes and radio inputs-->
+    <link rel="stylesheet" type="text/css" href="~/AdminLTE/plugins/jQuery-Plugin-For-Beautifying-Checkboxes-Radio-Buttons-iCheck/jQuery-Plugin-For-Beautifying-Checkboxes-Radio-Buttons-iCheck/" />
+    <!-- Morris chart -->
+    <!-- jvectormap -->
+    <!-- DatePicker -->
+    <!-- Styles.Render Validator and Scripts.Render modernizr-->
+
+</head>
+@* Dùng styles.render khi muốn render css từ bundleconfig.cs *@
+@Styles.Render("~/Content/css-vertical")
+<body>
+    <div class="wrapper">
+        <div class="content-wrapper height100" style="margin-top:0!important;margin-left:0!important">
+            <div class="container-fluid height100" style="padding:7.5px 7.5px">
+                <div class="card mb0px height100">
+                    <div class="card-body padding0px" style="overflow-y:auto;overflow-x:hidden;">
+                        <div class="bgimg col-md-8 col-lg-9 text-center white row height100" style="background: url(/Content/images/3.jpg) no-repeat;background-size:100% 100%;overflow-y:auto;overflow-x:hidden;margin:0;padding-right:15px">
+                            <img src="" class="mt20" />
+                            <h1 class="text-center text-uppercase" style=""></h1>
+                            <h5 class="italic text-center"></h5>
+                            &nbsp;
+                            <h2 class="inline-block" style=""></h2>
+                            <div class="position-absolute text-center" style="width:100%;bottom:3%">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<span id="show-time"></span>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar"></i>&nbsp;<span id="show-date"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-3 padding0px">
+                            <img src="" class="wid100 hidden" />
+                            <div class="content-login text-center">
+                                <div class="form-bottom" style="">
+                                    <div class="nav-log">
+                                        LOGIN 
+                                    </div>
+                                    <div class="text-center"><img id="user-banner" src="~/Content/images/149071.png" /></div>
+                                    <div class="text-center text-uppercase"></div>
+                                    <form role="form" action="@Url.Action("Index","LogIn")" method="post" class="login-form" id="form" style="text-align:left">
+                                        @Html.AntiForgeryToken()
+                                        @{
+                                            if (ViewBag.alert != null)
+                                            {
+                                                <div class="alert alert-warning" style="">@Html.Raw(ViewBag.alert)</div>
+                                            }
+                                        }
+                                        Username
+                                        <div class="form-group position-relative">
+                                            <label class="sr-only" for="form-username">Username</label>
+                                            <input autofocus value="" type="text" data-bv-noempty="true" name="Username" placeholder="Your username ..." class="form-username form-control" id="form-username" />
+                                            <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size:20px"></i>
+                                        </div>
+                                        Password
+                                        <div class="form-group position-relative">
+                                            <label class="sr-only" for="form-password">Password</label>
+                                            <input value="" type="password" data-bv-noempty="true" name="Password" placeholder="Your password ..." class="form-password form-control" id="form-password" />
+                                            <i class="fa fa-key" style="font-size:20px"></i>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>Enter Captcha</div>
+                                            <div class="captcha-login">
+
+                                            </div>
+                                            <div class="red">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <input type="hidden" name="IsRemember" value="0" />
+                                                <label><input type="checkbox" class="pace cb" name="CheckRememberMe" /><span class="lb1">&nbsp;Remember me</span></label>
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <span class="btnquenMatKhau" style=""><i class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp;Forgot password</span>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn" style=""><i class="fa fa-sign-in"></i>&nbsp;Log In</button>
+                                        <div class="text-center register">
+                                            <i class="fa fa-user-plus" aria-hidden="true"></i> Register new account
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="copyright" style="text-align:center;background-color:#0b5aa51a;height:7vh;position:absolute;bottom:0;left:0;right:0">
+                                <strong>Copyright &copy; @DateTime.Now.Year</strong> - Dương Văn Hoàn
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@Scripts.Render("~/bundles/jquery");
+<script type="text/javascript" src="~/AdminLTE/plugins/daterangepicker-master/daterangepicker-master/moment.min.js"></script>
+<script>
+    $(function () {
+        let $LogIn = {
+            Init: function () {
+                this.Load();
+                //setInterval:
+                setInterval(function () {
+                    $LogIn.LoadDateTimeRealTime();
+                }, 100);
+                $('form').on('submit', function () {
+                    $('.content-login').preloader({ text: 'Đang xử lý ...' });
+                    //setTimeOut:
+                    setTimeout(function () { $('.content-login').preloader('remove'); }, 30000);
+
+                });
+            },
+            Load: function () { },
+            LoadDateTimeRealTime: function () {
+                var days = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"];
+                let myDate = new Date();
+                let strDate = days[myDate.getDay()] + ',' + (myDate.getDate() + '').padStart(2, '0') + '/' + ((myDate.getMonth() + 1) + '').padStart(2, '0') + '/' + myDate.getFullYear();
+                $('#show-date').html(strDate);
+                var momentNow = moment();
+                $('#show-time').html(momentNow.format('hh:mm:ss A'));
+
+
+            },
+            CheckRememberMe: function () {
+                $('input[name=CheckRememberMe]').on('change', function () {
+                    var $thisVal = $(this).is(':checked');
+                    if ($thisVal) {
+                        $('input[name=IsRemember]').val('1');
+                    }
+                    else {
+                        $('input[name=IsRemember]').val('0');
+                    }
+                });
+            },
+            PasswordKeyDown: function () {
+
+            }
+        };
+        $LogIn.Init();
+
+        //Skip and Take in linq
+        //String.Join
+
+    });
+</script>

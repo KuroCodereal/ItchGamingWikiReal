@@ -1,0 +1,15 @@
+﻿@using ItchGamingWiki.Models
+@using CaptchaMvc.HtmlHelpers
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+    <h2>@Html.Captcha("Refresh", "", 4, "has-success", true)</h2>
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

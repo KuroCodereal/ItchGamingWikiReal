@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ItchGamingWiki - Games Distribution, Forum and more ...</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/AdminLTE/dist/css/_LayoutSYSUser.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div id="mySidenav" class="sideNav">
+
+        </div>
+        <nav class="main-header navbar">
+            <ul>
+                <li>
+                    <a class="open-nav">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+                <li>
+                    DVH - Itch Gaming Wiki
+                </li>
+                <li class="nav-item dropdown" id="notify">
+                    <a class="nav-link">
+                        <i class="fa fa-bell-o white"></i>
+                        <span class="badge badge-success navbar-badge" id="countMessage"></span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown" id="notify">
+                    <a class="nav-link">
+                        <i class="fa fa-user-circle-o"></i>&nbsp;<span>Welcome back,<b></b></span>
+                    </a>
+                </li>
+                <li class="nav-item btnSignOut">
+                    <a>
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;<span>Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+
+    <script>
+        @*var imageList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.list));
+        let currentIndex = 0;
+
+        // Load the last viewed image URL from localStorage if available
+        window.onload = function() {
+            let lastImageUrl = localStorage.getItem('lastImageUrl');
+            if (lastImageUrl) {
+                let imgElement = document.getElementById("hinhAnh");
+                imgElement.src = lastImageUrl;
+                currentIndex = imageList.indexOf(lastImageUrl);
+                if (currentIndex === -1) {
+                    currentIndex = 0; // Default to the first image if the URL is not in the list
+                    imgElement.src = imageList[currentIndex];
+                }
+            } else {
+                document.getElementById("hinhAnh").src = imageList[0];
+            }
+        };
+
+        function changeImage(action) {
+            if (action === "up") {
+                currentIndex = (currentIndex + 1) % imageList.length;
+            } else {
+                currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+            }
+            let newImageUrl = imageList[currentIndex];
+            document.getElementById("hinhAnh").setAttribute("src", newImageUrl);
+
+            // Save the current image URL to localStorage
+            localStorage.setItem('lastImageUrl', newImageUrl);
+        }*@
+
+    </script>
+</body>
+</html>

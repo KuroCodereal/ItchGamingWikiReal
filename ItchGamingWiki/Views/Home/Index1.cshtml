@@ -1,0 +1,32 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Alignment</title>
+    <style>
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+        }
+
+            .checkbox-container input[type="checkbox"] {
+                margin: 0;
+                vertical-align: middle;
+            }
+
+            .checkbox-container label {
+                margin-left: 5px; /* Khoảng cách giữa checkbox và label */
+                vertical-align: middle;
+            }
+    </style>
+</head>
+<body>
+    <div class="checkbox-container">
+        <input type="checkbox" id="myCheckbox">
+        <label for="myCheckbox">Label for checkbox</label>
+    </div>
+</body>
+</html>

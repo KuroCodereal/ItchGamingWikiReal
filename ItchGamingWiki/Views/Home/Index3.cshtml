@@ -1,0 +1,712 @@
+﻿
+@{
+    ViewBag.Title = "Index3";
+    Layout = "~/Views/Shared/_LayoutSYSUser.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "Index";
+}
+@Styles.Render("~/assets/custom/css/common.css")
+@Styles.Render("~/assets/custom/css/button.css")
+@Styles.Render("~/assets/custom/css/datatable-bootstrap.css")
+@Styles.Render("~/assets/custom/css/modal.css")
+<style>
+    .slider {
+        position: relative;
+        width: 800px;
+        height: 400px; /* Fix the height of the slider */
+        max-width: 100%;
+        margin-top: 20px;
+        overflow: hidden;
+        border: 1px solid #ddd;
+    }
+
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        width: 100%;
+        height: 100%; /* Fix the height of the slides container */
+    }
+
+        .slides img {
+            width: 100%; /* Fix the width of the images */
+            height: 100%; /* Fix the height of the images */
+            object-fit: cover; /* Ensures images cover the entire container without distortion */
+        }
+
+    .navigation {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+    }
+
+        .navigation span {
+            cursor: pointer;
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+        }
+
+    .indicators {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+        .indicators div {
+            height: 10px;
+            width: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .indicators .active {
+            background-color: #717171;
+        }
+
+    .slide-count {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h3 class="font-weight-bold text-uppercase my-0">Hoàn công 5s</h3>
+        <ol class="breadcrumb mb-0 bg-white">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Nghiệp vụ</a></li>
+            <li class="breadcrumb-item active">Hoàn công 5s</li>
+        </ol>
+    </div>
+    <div class="thematic-break mb-4"></div>
+
+    <div class="d-flex justify-content-start align-items-center mb-4 shadow-sm rounded">
+        <div class="btn-primary-box">
+            <a type="button" class="btn-primary-custom" id="btnGetAll"><img src="~/assets/images/btn/icon/DS.png" /> Lấy DS</a>
+            <div class="vertical-line"></div>
+
+        </div>
+        <div class="btn-primary-box">
+            <a id="btnHoanCong" class="btn-primary-custom" type="button" style="color: #0176FF; border: 1px hidden #fff; background-color: #fff; "><img src="~/assets/images/btn/icon/save.png" /> Hoàn công</a>
+            <div class="vertical-line"></div>
+
+        </div>
+        <div class="btn-primary-box">
+            <a id="btnKhoaPhieu" class="btn-primary-custom" type="button" style="color: #0176FF; border: 1px hidden #fff; background-color: #fff; "><img src="~/assets/images/btn/icon/khoaphieu.png" /> Khóa phiếu</a>
+            <div class="vertical-line"></div>
+
+        </div>
+
+    </div>
+
+    <h4 class="font-weight-bold">Thông tin tìm kiếm</h4>
+    <div class="thematic-break mb-4"></div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="form-horizontal">
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label" for="cbxPhongTrao">Phong Trào:</label>
+                    <div class="col-md-8">
+                        <select id="cbxPhongTrao" class="form-control" name="cbxPhongTrao">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="form-horizontal">
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label" for="cbxLoaiCSHT">Loại CSHT:</label>
+                    <div class="col-md-8">
+                        <select id="cbxLoaiCSHT" class="form-control" name="cbxLoaiCSHT">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="form-horizontal">
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label" for="cbxDonVi">Đơn vị:</label>
+                    <div class="col-md-8">
+                        <select id="cbxDonVi" class="form-control" name="cbxDonVi">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="form-horizontal">
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label" for="cbxToQuanLy">Tổ quản lý:</label>
+                    <div class="col-md-8">
+                        <select id="cbxToQuanLy" class="form-control" name="cbxToQuanLy">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-xl-6">
+                <div class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="cbxLoaiTram">Loại trạm:</label>
+                        <div class="col-md-8">
+                            <select id="cbxLoaiTram" class="form-control" name="cbxLoaiTram">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+    </div>
+    <h4 class="font-weight-bold">Thông tin cập nhật</h4>
+    <div class="thematic-break mb-4"></div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="form-horizontal">
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label" for="tenCSHT">Tên CSHT:</label>
+                    <div class="col-md-8">
+                        <input id="tenCSHT" class="form-control" name="tenCSHT" type="text" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label" for="nguoiCapNhat">Người cập nhật:</label>
+                    <div class="col-md-8">
+                        <input id="nguoiCapNhat" class="form-control" name="nguoiCapNhat" type="text" />
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label" for="ngayCapNhat">Ngày cập nhật:</label>
+                    <div class="col-md-8">
+                        @*<input type="text" id="dtNgayPhatDongSearch_TuNgay" name="dtNgayPhatDongSearch_TuNgay" class="form-control" placeholder="">*@
+                        <div id="date_ngayCapNhat" class="input-group date" data-date-format="dd/mm/yyyy">
+                            <input id="ngayCapNhat" placeholder="dd/mm/yyyy..." class="form-control" type="text">
+                            <span class="input-group-addon"><i class="fa fa-lg fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label" for="anhCapNhat">Hình ảnh(*):</label>
+                    <div class="col-md-8">
+                        <a>
+                            <input type="file" class="custom-file-input" id="fileDinhKem" name="fileDinhKem" style="position: absolute;" accept="image/*" multiple>
+                            <img src="~/assets/images/btn/icon/importFile.png" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="form-horizontal">
+                <div class="form-group row">
+
+                    <div class="slider" id="slider">
+                        <div class="slides" id="slides"></div>
+                        <div class="navigation">
+                            <span id="prev">&#10094;</span>
+                            <span id="next">&#10095;</span>
+                        </div>
+                        <div class="indicators" id="indicators"></div>
+                        <div class="slide-count">
+                            <span id="current-slide">1</span> / <span id="total-slides">0</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="thematic-break mb-4"></div>
+    <h4 class="font-weight-bold">Danh sách phiếu</h4>
+    <div class="thematic-break mb-4"></div>
+    <div class="row">
+        <div class="col-xl-6">
+            <a class="btn btn-default col-md-6" id="btnPhieuMoi">Phiếu mới</a>
+            <a class="btn btn-default col-md-6" id="btnPhieuHoanThien">Phiếu hoàn thiện</a>
+
+        </div>
+        <div class="col-xl-6"></div>
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="thematic-break mb-4"></div>
+            <div class="table-responsive">
+                <table id="table_phieuMoi" class="table table-bordered display w-100">
+                    <thead>
+                        <tr>
+
+                            <th><input type="checkbox" id="checkallMoi" /></th>
+                            <th width="20%">Mã CSHT</th>
+                            <th width="20%">Tên CSHT</th>
+                            <th width="10%">Loại CSHT</th>
+                            <th width="10%">Loại trạm</th>
+                            <th width="10%">Trạng thái phiếu</th>
+                            <th width="30%">NV Quản Lý</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th width="20%">Mã CSHT</th>
+                            <th width="20%">Tên CSHT</th>
+                            <th width="10%">Loại CSHT</th>
+                            <th width="10%">Loại trạm</th>
+                            <th width="10%">Trạng thái phiếu</th>
+                            <th width="30%">NV Quản Lý</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+                <table id="table_phieuHT" class="table table-bordered display w-100">
+                    <thead>
+                        <tr>
+
+                            <th><input type="checkbox" id="checkallHT" /></th>
+                            <th width="20%">Mã CSHT</th>
+                            <th width="20%">Tên CSHT</th>
+                            <th width="10%">Loại CSHT</th>
+                            <th width="10%">Loại trạm</th>
+                            <th width="10%">Trạng thái phiếu</th>
+                            <th width="30%">NV Quản Lý</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th width="20%">Mã CSHT</th>
+                            <th width="20%">Tên CSHT</th>
+                            <th width="10%">Loại CSHT</th>
+                            <th width="10%">Loại trạm</th>
+                            <th width="10%">Trạng thái phiếu</th>
+                            <th width="30%">NV Quản Lý</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        activeMenu("liNghiepVu", "liHoanCong5s");
+        $.noConflict();
+        loadPhongTrao();
+        loadLoaiCSHT();
+        //date
+        $("#date_ngayCapNhat").datepicker({
+            autoclose: true,
+            todayHighlight: true
+        }).datepicker('update', new Date());
+        loadDonVi();
+        setTimeout(function () {
+            loadDonViByToQuanLy();
+
+        }, 1000);
+        setTimeout(function () {
+            loadDanhSachHoanCong5SMoi();
+            $("#table_phieuHT").DataTable().clear().destroy();
+        }, 1500);
+        document.getElementById("table_phieuHT").style.display = "none";
+        document.getElementById("table_phieuMoi").style.display = "block";
+        document.getElementById("btnPhieuMoi").style.backgroundColor = "#FFFFFF";
+        document.getElementById("btnPhieuMoi").style.color = "#0176FF";
+        document.getElementById("btnPhieuHoanThien").style.backgroundColor = "#E0E0E0";
+        document.getElementById("btnPhieuHoanThien").style.color = "#000000";
+
+
+        //slide
+        const slides = $('.slides img').length;
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            if (index >= slides) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = slides - 1;
+            } else {
+                currentIndex = index;
+            }
+
+            const translateX = -currentIndex * 100 + '%';
+            $('.slides').css('transform', `translateX(${translateX})`);
+            $('.indicators div').removeClass('active').eq(currentIndex).addClass('active');
+            $('#current-slide').text(currentIndex + 1);
+        }
+
+        $('#next').click(function () {
+            showSlide(currentIndex + 1);
+        });
+
+        $('#prev').click(function () {
+            showSlide(currentIndex - 1);
+        });
+
+        $('.indicators div').click(function () {
+            const index = $(this).data('slide');
+            showSlide(index);
+        });
+
+        $('#total-slides').text(slides);
+
+    });
+    document.getElementById('fileDinhKem').addEventListener('change', function (event) {
+        const files = event.target.files;
+        const slidesContainer = document.getElementById('slides');
+        const indicatorsContainer = document.getElementById('indicators');
+        const totalSlidesSpan = document.getElementById('total-slides');
+        let currentSlideIndex = 0;
+
+        slidesContainer.innerHTML = ''; // Clear existing slides
+        indicatorsContainer.innerHTML = ''; // Clear existing indicators
+
+        Array.from(files).forEach((file, index) => {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                slidesContainer.appendChild(img);
+
+                const indicator = document.createElement('div');
+                indicator.dataset.slide = index;
+                if (index === 0) {
+                    indicator.classList.add('active');
+                }
+                indicatorsContainer.appendChild(indicator);
+            }
+            reader.readAsDataURL(file);
+        });
+
+        totalSlidesSpan.textContent = files.length;
+
+        function updateSlide(position) {
+            slidesContainer.style.transform = `translateX(${-position * 800}px)`;
+            document.getElementById('current-slide').textContent = position + 1;
+            document.querySelector('.indicators .active').classList.remove('active');
+            indicatorsContainer.children[position].classList.add('active');
+        }
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentSlideIndex = (currentSlideIndex > 0) ? currentSlideIndex - 1 : files.length - 1;
+            updateSlide(currentSlideIndex);
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentSlideIndex = (currentSlideIndex < files.length - 1) ? currentSlideIndex + 1 : 0;
+            updateSlide(currentSlideIndex);
+        });
+
+        indicatorsContainer.addEventListener('click', (event) => {
+            if (event.target.dataset.slide) {
+                currentSlideIndex = parseInt(event.target.dataset.slide);
+                updateSlide(currentSlideIndex);
+            }
+        });
+    });
+
+    $("#btnGetAll").click(function () {
+        loadDanhSachHoanCong5SMoiSearch();
+    });
+    function danhSach(id) {
+        $.get("/HoanCong5S/loadThongTinHoanCong", { idHoanCong: id }, function (data) {
+            console.log(data);
+            $('#tenCSHT').val(data.data.tenCSHT);
+            $('#nguoiCapNhat').val(data.data.nguoiCapNhat);
+            $('#ngayCapNhat').val(data.data.ngayCapNhat);
+
+
+        });
+    }
+    const configTableDefault = {
+        destroy: true,
+        ordering: false,
+        paging: true,
+        pagingType: "full_numbers",
+        searching: true,
+        bInfo: true,
+        deferRender: true,
+        dom: '<"wrapper"t<"bottom row"<"col-md-5 d-flex justify-content-lg-start align-items-center"pl><"col-md-7"i>>>',
+        language: {
+            lengthMenu: "_MENU_ bản ghi trên trang",
+            zeroRecords: "Không tìm thấy kết quả",
+            info: "Tổng cộng <span class='info-total'>_TOTAL_</span> bản ghi. Đang hiển thị bản ghi số <span class='info-start'>_START_</span> đến <span class='info-end'>_END_</span>",
+            infoEmpty: "Không có mục nào để hiển thị",
+            infoFiltered: "(được lọc từ _MAX_ mục)",
+            paginate: {
+                first: "|<<",
+                last: ">>|",
+                next: ">",
+                previous: "<",
+            },
+            search: "Tìm kiếm:",
+        },
+    };
+    function initComplete() {
+        this.api()
+            .columns()
+            .every(function () {
+                let column = this;
+                let title = $(column.footer()).text();
+                if (title) {
+                    let divSearch = $("<div>").addClass("search-container");
+                    let icon = $("<img>")
+                        .addClass("search-icon")
+                        .attr("src", "assets/images/btn/icon/input-search.png");
+                    let input = $("<input>").addClass("input-search-col");
+                    divSearch.append(icon).append(input);
+                    $(column.footer()).empty().append(divSearch);
+                    input.on("keyup", function () {
+                        if (column.search() !== this.value) {
+                            column.search(this.value).draw();
+                        }
+                    });
+                }
+            });
+    }
+    function rowCallback(row, data, index) {
+        $(row)
+            .find(".checkItem")
+            .on("change", function () {
+                $(this).trigger("rowChecked");
+                if ($(this).is(":checked")) {
+                    $(row).addClass("checked-row");
+                } else {
+                    $(row).removeClass("checked-row");
+                }
+            });
+    }
+    function loadDanhSachHoanCong5SMoi() {
+
+        $("#table_phieuMoi").DataTable({
+            ...configTableDefault,
+            "ajax": {
+                "url": "/HoanCong5S/getDanhSachHoanCong5s",
+                "data": {
+                    idPhongTrao: $("#cbxPhongTrao").val(), donVi: $("#cbxDonVi").val(), toQuanly: $("#cbxToQuanLy").val(),
+                    loaiCSHT: $("#cbxLoaiCSHT").val(), idNhanVien: @Session["id"]
+                },
+                "processing": true,
+                "serverSide": true,
+                "type": "GET",
+                "datatype": "json",
+                "contentType": "application/json;charset=UTF-8"
+            },
+            "columns": [
+                {
+                    "data": "id", "render": function (data) {
+                        return "<input type='checkbox' id='idHoanCong' class='checkitemHoanCong' value='" + data + "' onclick='danhSach("+ data +")' />";
+                    }
+                },
+                { "data": "maCSHT" },
+                { "data": "tenCSHT" },
+                { "data": "loaiCSHT" },
+                { "data": "loaiTram" },
+                { "data": "trangThaiPhieuGiaoNhanVien" },
+                { "data": "nhanVienQuanLy" },
+            ],
+            initComplete: initComplete,
+            rowCallback: rowCallback,
+            searching: true
+        })
+            .on("draw.dt", function () {
+                $("#table_phieuMoi thead th").addClass("custom-header-color");
+                $("#table_phieuMoi tfoot th").addClass("custom-header-color");
+                $("#table_phieuMoi thead th").addClass("custom-header-color");
+                $("#table_phieuMoi_filter").remove();
+                $("#checkallMoi").prop("checked", false);
+            });
+    }
+    function loadDanhSachHoanCong5SMoiSearch() {
+        $("#table_phieuMoi").DataTable({
+            ...configTableDefault,
+            "ajax": {
+                "url": "/HoanCong5S/getDanhSachHoanCong5sSearch",
+                "data": {
+                    idPhongTrao: $("#cbxPhongTrao").val(), donVi: $("#cbxDonVi").val(), toQuanly: $("#cbxToQuanLy").val(),
+                    loaiCSHT: $("#cbxLoaiCSHT").val()
+                },
+                "processing": true,
+                "serverSide": true,
+                "type": "GET",
+                "datatype": "json",
+                "contentType": "application/json;charset=UTF-8"
+            },
+            "columns": [
+                {
+                    "data": "id", "render": function (data) {
+                        return "<input type='checkbox' id='idHoanCong' class='checkitemHoanCong' value='" + data + "'  onclick='danhSach(" + data +")' />";
+                    }
+                },
+                { "data": "maCSHT" },
+                { "data": "tenCSHT" },
+                { "data": "loaiCSHT" },
+                { "data": "loaiTram" },
+                { "data": "trangThaiPhieuGiaoNhanVien" },
+                { "data": "nhanVienQuanLy" },
+            ],
+            initComplete: initComplete,
+            rowCallback: rowCallback,
+            searching: true
+        })
+            .on("draw.dt", function () {
+                $("#table_phieuMoi thead th").addClass("custom-header-color");
+                $("#table_phieuMoi tfoot th").addClass("custom-header-color");
+                $("#table_phieuMoi thead th").addClass("custom-header-color");
+                $("#table_phieuMoi_filter").remove();
+                $("#checkallMoi").prop("checked", false);
+            });
+    }
+    function loadDanhSachHoanCongHoanThien() {
+
+        $("#table_phieuHT").DataTable({
+            ...configTableDefault,
+            "ajax": {
+                "url": "/HoanCong5S/getDanhSachHoanCongHoanThien",
+                "data": {
+                    idPhongTrao: $("#cbxPhongTrao").val(), donVi: $("#cbxDonVi").val(), toQuanly: $("#cbxToQuanLy").val(),
+                    loaiCSHT: $("#cbxLoaiCSHT").val(), loaiTram: $("#cbxLoaiTram").val(), idNhanVien: @Session["id"]
+                },
+                "processing": true,
+                "serverSide": true,
+                "type": "GET",
+                "datatype": "json",
+                "contentType": "application/json;charset=UTF-8"
+            },
+            "columns": [
+                {
+                    "data": "id", "render": function (data) {
+                        return "<input type='checkbox' id='idHoanCong' class='checkitemHoanCong' value='" + data + "' />";
+                    }
+                },
+                { "data": "maCSHT" },
+                { "data": "tenCSHT" },
+                { "data": "loaiCSHT" },
+                { "data": "loaiTram" },
+                { "data": "trangThaiPhieuGiaoNhanVien" },
+                { "data": "nhanVienQuanLy" },
+            ],
+            initComplete: initComplete,
+            rowCallback: rowCallback,
+            searching: true
+        })
+            .on("draw.dt", function () {
+                $("#table_phieuHT thead th").addClass("custom-header-color");
+                $("#table_phieuHT tfoot th").addClass("custom-header-color");
+                $("#table_phieuHT thead th").addClass("custom-header-color");
+                $("#table_phieuHT_filter").remove();
+                $("#checkallHT").prop("checked", false);
+            });
+    }
+    function loadDonVi() {
+        $.get('/HoanCong5S/loadDonVi', function (data) {
+            var htmlcha = '';
+
+            $.each(data.data, function (key, item) {
+                if (@Session["donViId"] == item.id) {
+                    htmlcha += '<option value = ' + item.id + '>' + item.tenDonVi + '</option>';
+                }
+            });
+            $('#cbxDonVi').html(htmlcha);
+        })
+    }
+    function loadDonViByToQuanLy() {
+        if ($("#cbxDonVi").val() != 0) {
+            $.get("/HoanCong5S/loadDonViByToQuanLy", { donVi: $("#cbxDonVi").val() }, function (data) {
+                console.log(data);
+                var html = '';
+                $.each(data.data, function (key, item) {
+                    html += '<option value = ' + item.id + '>' + item.tenDonVi + '</option>';
+
+                });
+                $('#cbxToQuanLy').html(html);
+            });
+        }
+
+    }
+    $("#btnPhieuMoi").click(function () {
+        document.getElementById("table_phieuHT").style.display = "none";
+        document.getElementById("table_phieuMoi").style.display = "block";
+        document.getElementById("btnPhieuMoi").style.backgroundColor = "#FFFFFF";
+        document.getElementById("btnPhieuMoi").style.color = "#0176FF";
+        document.getElementById("btnPhieuHoanThien").style.backgroundColor = "#E0E0E0";
+        document.getElementById("btnPhieuHoanThien").style.color = "#000000";
+        loadDanhSachHoanCong5SMoi();
+        $("#table_phieuHT").DataTable().clear().destroy();
+    })
+    $("#btnPhieuHoanThien").click(function () {
+        document.getElementById("table_phieuMoi").style.display = "none";
+        document.getElementById("table_phieuHT").style.display = "block";
+        document.getElementById("btnPhieuHoanThien").style.backgroundColor = "#FFFFFF";
+        document.getElementById("btnPhieuHoanThien").style.color = "#0176FF";
+        document.getElementById("btnPhieuMoi").style.backgroundColor = "#E0E0E0";
+        document.getElementById("btnPhieuMoi").style.color = "#000000";
+        loadDanhSachHoanCongHoanThien();
+        $("#table_phieuMoi").DataTable().clear().destroy();
+    })
+
+    function loadPhongTrao() {
+        $.get("/HoanCong5S/loadPhongTrao", function (data) {
+            console.log(data);
+            var html = '';
+            $.each(data.data, function (key, item) {
+                html += '<option value = ' + item.id + '>' + item.tenPhongTrao + '</option>';
+
+            });
+            $('#cbxPhongTrao').html(html);
+
+
+        });
+    }
+
+    function loadLoaiCSHT() {
+        $.get("/HoanCong5S/loadLoaiCSHT", function (data) {
+            console.log(data);
+            var html = '';
+            $.each(data.data, function (key, item) {
+                html += '<option value = ' + item.id + '>' + item.tenLoaiCSHT + '</option>';
+
+            });
+            $('#cbxLoaiCSHT').html(html);
+
+
+        });
+
+    }
+    @*function loadLoaiTram() {
+        $.get("/HoanCong5s/loadLoaiTram", function (data) {
+            console.log(data);
+            var html = '';
+            $.each(data.data, function (key, item) {
+                html += '<option value = ' + item.id + '>' + item.tenLoaiTram + '</option>';
+
+            });
+            $('#cbxLoaiTram').html(html);
+
+
+        });
+
+    }*@
+</script>
+
+
+
+

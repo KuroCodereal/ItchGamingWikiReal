@@ -1,0 +1,24 @@
+﻿/*button-primary*/
+.btn-primary-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+    margin-right: 6px;
+}
+
+.btn-primary-custom {
+    margin-right: 16px;
+    font-weight: bolder;
+    color: #0176FF !important;
+}
+
+    .btn-primary-custom:hover {
+        opacity: 0.7;
+        transition: all .3s;
+    }
+
+    .btn-primary-custom .vertical-line {
+        border-left: 1px solid #BAE7FF;
+        height: 30px;
+    }

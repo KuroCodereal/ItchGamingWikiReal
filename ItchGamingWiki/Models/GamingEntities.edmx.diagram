@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f2ce98dcdd6746d985240a1ef3ecc687" Name="Diagram1">
+        <EntityTypeShape EntityType="ItchGamingWikiModel.GameReview" Width="1.5" PointX="6" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItchGamingWikiModel.Game" Width="1.5" PointX="3.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItchGamingWikiModel.Position" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItchGamingWikiModel.SYSGroupGame" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItchGamingWikiModel.SYSGroupRole" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItchGamingWikiModel.SYSGroupUser" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItchGamingWikiModel.SYSMenu" Width="1.5" PointX="3.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItchGamingWikiModel.SYSUser" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItchGamingWikiModel.SYSUserRole" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="ItchGamingWikiModel.FK__GameRevie__GameI__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="ItchGamingWikiModel.FK__GameRevie__UserI__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="ItchGamingWikiModel.FK__SYSGroupR__Group__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="ItchGamingWikiModel.FK__SYSGroupU__Group__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="ItchGamingWikiModel.FK__SYSUserRo__Group__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="ItchGamingWikiModel.FK__SYSGroupR__MenuI__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="ItchGamingWikiModel.FK__SYSGroupU__UserI__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="ItchGamingWikiModel.FK__SYSUserRo__MenuI__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="ItchGamingWikiModel.FK__SYSUserRo__UserI__3B75D760" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

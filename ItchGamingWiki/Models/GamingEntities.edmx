@@ -1,0 +1,766 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ItchGamingWikiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GameReview">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContentReview" Type="text" />
+        </EntityType>
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="GameId" />
+          </Key>
+          <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameName" Type="text" Nullable="false" />
+          <Property Name="GameType" Type="text" Nullable="false" />
+          <Property Name="ShortDescription" Type="text" />
+          <Property Name="ReleasedDate" Type="datetime" />
+          <Property Name="Developer" Type="nvarchar(max)" />
+          <Property Name="Publisher" Type="nvarchar(max)" />
+          <Property Name="LinkGame" Type="text" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Position_Id" />
+          </Key>
+          <Property Name="Position_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LevelCV" Type="int" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Enable" Type="bit" />
+        </EntityType>
+        <EntityType Name="SYSGroupGame">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GroupCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Enable" Type="int" />
+          <Property Name="Created_by" Type="nvarchar" MaxLength="100" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Updated_by" Type="nvarchar" MaxLength="100" />
+          <Property Name="Updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SYSGroupRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RoleView" Type="int" />
+          <Property Name="RoleAdd" Type="int" />
+          <Property Name="RoleEdit" Type="int" />
+          <Property Name="RoleDelete" Type="int" />
+          <Property Name="RoleImport" Type="int" />
+          <Property Name="RoleExport" Type="int" />
+          <Property Name="RolePrint" Type="int" />
+        </EntityType>
+        <EntityType Name="SYSGroupUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" />
+          <Property Name="Enable" Type="int" />
+        </EntityType>
+        <EntityType Name="SYSMenu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="ParentType" Type="int" />
+          <Property Name="Icon" Type="varchar" MaxLength="50" />
+          <Property Name="Controller" Type="varchar" MaxLength="500" />
+          <Property Name="Action" Type="varchar" MaxLength="50" />
+          <Property Name="UrlLink" Type="varchar" MaxLength="500" />
+          <Property Name="UrlName" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="Enable" Type="int" />
+          <Property Name="StyleHTML" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SYSUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="Updated_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Last_ip" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Enable" Type="int" />
+          <Property Name="BirthDay" Type="datetime" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Image" Type="text" />
+        </EntityType>
+        <EntityType Name="SYSUserRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="200" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="100" />
+          <Property Name="RoleView" Type="int" />
+          <Property Name="RoleAdd" Type="int" />
+          <Property Name="RoleEdit" Type="int" />
+          <Property Name="RoleImport" Type="int" />
+          <Property Name="RoleExport" Type="int" />
+          <Property Name="RolePrint" Type="int" />
+          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleDelete" Type="int" />
+        </EntityType>
+        <Association Name="FK__GameRevie__GameI__4AB81AF0">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="GameReview" Type="Self.GameReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="GameId" />
+            </Principal>
+            <Dependent Role="GameReview">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GameRevie__UserI__4BAC3F29">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="GameReview" Type="Self.GameReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="GameReview">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSGroupR__Group__44FF419A">
+          <End Role="SYSGroupGame" Type="Self.SYSGroupGame" Multiplicity="1" />
+          <End Role="SYSGroupRole" Type="Self.SYSGroupRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSGroupGame">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="SYSGroupRole">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSGroupR__MenuI__45F365D3">
+          <End Role="SYSMenu" Type="Self.SYSMenu" Multiplicity="1" />
+          <End Role="SYSGroupRole" Type="Self.SYSGroupRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSMenu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="SYSGroupRole">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSGroupU__Group__412EB0B6">
+          <End Role="SYSGroupGame" Type="Self.SYSGroupGame" Multiplicity="1" />
+          <End Role="SYSGroupUser" Type="Self.SYSGroupUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSGroupGame">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="SYSGroupUser">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSGroupU__UserI__4222D4EF">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSGroupUser" Type="Self.SYSGroupUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SYSGroupUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__Group__5EBF139D">
+          <End Role="SYSGroupGame" Type="Self.SYSGroupGame" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSGroupGame">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__MenuI__3C69FB99">
+          <End Role="SYSMenu" Type="Self.SYSMenu" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSMenu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__UserI__3B75D760">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ItchGamingWikiModelStoreContainer">
+          <EntitySet Name="GameReview" EntityType="Self.GameReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSGroupGame" EntityType="Self.SYSGroupGame" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSGroupRole" EntityType="Self.SYSGroupRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSGroupUser" EntityType="Self.SYSGroupUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSMenu" EntityType="Self.SYSMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUser" EntityType="Self.SYSUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUserRole" EntityType="Self.SYSUserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__GameRevie__GameI__4AB81AF0" Association="Self.FK__GameRevie__GameI__4AB81AF0">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="GameReview" EntitySet="GameReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GameRevie__UserI__4BAC3F29" Association="Self.FK__GameRevie__UserI__4BAC3F29">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="GameReview" EntitySet="GameReview" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSGroupR__Group__44FF419A" Association="Self.FK__SYSGroupR__Group__44FF419A">
+            <End Role="SYSGroupGame" EntitySet="SYSGroupGame" />
+            <End Role="SYSGroupRole" EntitySet="SYSGroupRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSGroupR__MenuI__45F365D3" Association="Self.FK__SYSGroupR__MenuI__45F365D3">
+            <End Role="SYSMenu" EntitySet="SYSMenu" />
+            <End Role="SYSGroupRole" EntitySet="SYSGroupRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSGroupU__Group__412EB0B6" Association="Self.FK__SYSGroupU__Group__412EB0B6">
+            <End Role="SYSGroupGame" EntitySet="SYSGroupGame" />
+            <End Role="SYSGroupUser" EntitySet="SYSGroupUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSGroupU__UserI__4222D4EF" Association="Self.FK__SYSGroupU__UserI__4222D4EF">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="SYSGroupUser" EntitySet="SYSGroupUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__Group__5EBF139D" Association="Self.FK__SYSUserRo__Group__5EBF139D">
+            <End Role="SYSGroupGame" EntitySet="SYSGroupGame" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__MenuI__3C69FB99" Association="Self.FK__SYSUserRo__MenuI__3C69FB99">
+            <End Role="SYSMenu" EntitySet="SYSMenu" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__UserI__3B75D760" Association="Self.FK__SYSUserRo__UserI__3B75D760">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ItchGamingWikiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GameReview">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ContentReview" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Game" Relationship="Self.FK__GameRevie__GameI__4AB81AF0" FromRole="GameReview" ToRole="Games" />
+          <NavigationProperty Name="SYSUser" Relationship="Self.FK__GameRevie__UserI__4BAC3F29" FromRole="GameReview" ToRole="SYSUser" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameId" />
+          </Key>
+          <Property Name="GameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GameType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReleasedDate" Type="DateTime" Precision="3" />
+          <Property Name="Developer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Publisher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkGame" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GameReviews" Relationship="Self.FK__GameRevie__GameI__4AB81AF0" FromRole="Games" ToRole="GameReview" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Position_Id" />
+          </Key>
+          <Property Name="Position_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PositionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LevelCV" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Enable" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SYSGroupGame">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Guid" Nullable="false" />
+          <Property Name="GroupCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Enable" Type="Int32" />
+          <Property Name="Created_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SYSGroupRoles" Relationship="Self.FK__SYSGroupR__Group__44FF419A" FromRole="SYSGroupGame" ToRole="SYSGroupRole" />
+          <NavigationProperty Name="SYSGroupUsers" Relationship="Self.FK__SYSGroupU__Group__412EB0B6" FromRole="SYSGroupGame" ToRole="SYSGroupUser" />
+          <NavigationProperty Name="SYSUserRoles" Relationship="Self.FK__SYSUserRo__Group__5EBF139D" FromRole="SYSGroupGame" ToRole="SYSUserRole" />
+        </EntityType>
+        <EntityType Name="SYSGroupRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="GroupId" Type="Guid" Nullable="false" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleView" Type="Int32" />
+          <Property Name="RoleAdd" Type="Int32" />
+          <Property Name="RoleEdit" Type="Int32" />
+          <Property Name="RoleDelete" Type="Int32" />
+          <Property Name="RoleImport" Type="Int32" />
+          <Property Name="RoleExport" Type="Int32" />
+          <Property Name="RolePrint" Type="Int32" />
+          <NavigationProperty Name="SYSGroupGame" Relationship="Self.FK__SYSGroupR__Group__44FF419A" FromRole="SYSGroupRole" ToRole="SYSGroupGame" />
+          <NavigationProperty Name="SYSMenu" Relationship="Self.FK__SYSGroupR__MenuI__45F365D3" FromRole="SYSGroupRole" ToRole="SYSMenu" />
+        </EntityType>
+        <EntityType Name="SYSGroupUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="GroupId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Enable" Type="Int32" />
+          <NavigationProperty Name="SYSGroupGame" Relationship="Self.FK__SYSGroupU__Group__412EB0B6" FromRole="SYSGroupUser" ToRole="SYSGroupGame" />
+          <NavigationProperty Name="SYSUser" Relationship="Self.FK__SYSGroupU__UserI__4222D4EF" FromRole="SYSGroupUser" ToRole="SYSUser" />
+        </EntityType>
+        <EntityType Name="SYSMenu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="ParentType" Type="Int32" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Controller" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UrlLink" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UrlName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="Enable" Type="Int32" />
+          <Property Name="StyleHTML" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYSGroupRoles" Relationship="Self.FK__SYSGroupR__MenuI__45F365D3" FromRole="SYSMenu" ToRole="SYSGroupRole" />
+          <NavigationProperty Name="SYSUserRoles" Relationship="Self.FK__SYSUserRo__MenuI__3C69FB99" FromRole="SYSMenu" ToRole="SYSUserRole" />
+        </EntityType>
+        <EntityType Name="SYSUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Updated_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Last_ip" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enable" Type="Int32" />
+          <Property Name="BirthDay" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GameReviews" Relationship="Self.FK__GameRevie__UserI__4BAC3F29" FromRole="SYSUser" ToRole="GameReview" />
+          <NavigationProperty Name="SYSGroupUsers" Relationship="Self.FK__SYSGroupU__UserI__4222D4EF" FromRole="SYSUser" ToRole="SYSGroupUser" />
+          <NavigationProperty Name="SYSUserRoles" Relationship="Self.FK__SYSUserRo__UserI__3B75D760" FromRole="SYSUser" ToRole="SYSUserRole" />
+        </EntityType>
+        <EntityType Name="SYSUserRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RoleView" Type="Int32" />
+          <Property Name="RoleAdd" Type="Int32" />
+          <Property Name="RoleEdit" Type="Int32" />
+          <Property Name="RoleImport" Type="Int32" />
+          <Property Name="RoleExport" Type="Int32" />
+          <Property Name="RolePrint" Type="Int32" />
+          <Property Name="GroupId" Type="Guid" Nullable="false" />
+          <Property Name="RoleDelete" Type="Int32" />
+          <NavigationProperty Name="SYSGroupGame" Relationship="Self.FK__SYSUserRo__Group__5EBF139D" FromRole="SYSUserRole" ToRole="SYSGroupGame" />
+          <NavigationProperty Name="SYSMenu" Relationship="Self.FK__SYSUserRo__MenuI__3C69FB99" FromRole="SYSUserRole" ToRole="SYSMenu" />
+          <NavigationProperty Name="SYSUser" Relationship="Self.FK__SYSUserRo__UserI__3B75D760" FromRole="SYSUserRole" ToRole="SYSUser" />
+        </EntityType>
+        <Association Name="FK__GameRevie__GameI__4AB81AF0">
+          <End Role="Games" Type="Self.Game" Multiplicity="1" />
+          <End Role="GameReview" Type="Self.GameReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="GameId" />
+            </Principal>
+            <Dependent Role="GameReview">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GameRevie__UserI__4BAC3F29">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="GameReview" Type="Self.GameReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="GameReview">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSGroupR__Group__44FF419A">
+          <End Role="SYSGroupGame" Type="Self.SYSGroupGame" Multiplicity="1" />
+          <End Role="SYSGroupRole" Type="Self.SYSGroupRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSGroupGame">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="SYSGroupRole">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSGroupU__Group__412EB0B6">
+          <End Role="SYSGroupGame" Type="Self.SYSGroupGame" Multiplicity="1" />
+          <End Role="SYSGroupUser" Type="Self.SYSGroupUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSGroupGame">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="SYSGroupUser">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__Group__5EBF139D">
+          <End Role="SYSGroupGame" Type="Self.SYSGroupGame" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSGroupGame">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSGroupR__MenuI__45F365D3">
+          <End Role="SYSMenu" Type="Self.SYSMenu" Multiplicity="1" />
+          <End Role="SYSGroupRole" Type="Self.SYSGroupRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSMenu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="SYSGroupRole">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSGroupU__UserI__4222D4EF">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSGroupUser" Type="Self.SYSGroupUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SYSGroupUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__MenuI__3C69FB99">
+          <End Role="SYSMenu" Type="Self.SYSMenu" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSMenu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__UserI__3B75D760">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ItchGamingWikiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GameReviews" EntityType="Self.GameReview" />
+          <EntitySet Name="Games" EntityType="Self.Game" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="SYSGroupGames" EntityType="Self.SYSGroupGame" />
+          <EntitySet Name="SYSGroupRoles" EntityType="Self.SYSGroupRole" />
+          <EntitySet Name="SYSGroupUsers" EntityType="Self.SYSGroupUser" />
+          <EntitySet Name="SYSMenus" EntityType="Self.SYSMenu" />
+          <EntitySet Name="SYSUsers" EntityType="Self.SYSUser" />
+          <EntitySet Name="SYSUserRoles" EntityType="Self.SYSUserRole" />
+          <AssociationSet Name="FK__GameRevie__GameI__4AB81AF0" Association="Self.FK__GameRevie__GameI__4AB81AF0">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="GameReview" EntitySet="GameReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GameRevie__UserI__4BAC3F29" Association="Self.FK__GameRevie__UserI__4BAC3F29">
+            <End Role="SYSUser" EntitySet="SYSUsers" />
+            <End Role="GameReview" EntitySet="GameReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSGroupR__Group__44FF419A" Association="Self.FK__SYSGroupR__Group__44FF419A">
+            <End Role="SYSGroupGame" EntitySet="SYSGroupGames" />
+            <End Role="SYSGroupRole" EntitySet="SYSGroupRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSGroupU__Group__412EB0B6" Association="Self.FK__SYSGroupU__Group__412EB0B6">
+            <End Role="SYSGroupGame" EntitySet="SYSGroupGames" />
+            <End Role="SYSGroupUser" EntitySet="SYSGroupUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__Group__5EBF139D" Association="Self.FK__SYSUserRo__Group__5EBF139D">
+            <End Role="SYSGroupGame" EntitySet="SYSGroupGames" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSGroupR__MenuI__45F365D3" Association="Self.FK__SYSGroupR__MenuI__45F365D3">
+            <End Role="SYSMenu" EntitySet="SYSMenus" />
+            <End Role="SYSGroupRole" EntitySet="SYSGroupRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSGroupU__UserI__4222D4EF" Association="Self.FK__SYSGroupU__UserI__4222D4EF">
+            <End Role="SYSUser" EntitySet="SYSUsers" />
+            <End Role="SYSGroupUser" EntitySet="SYSGroupUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__MenuI__3C69FB99" Association="Self.FK__SYSUserRo__MenuI__3C69FB99">
+            <End Role="SYSMenu" EntitySet="SYSMenus" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__UserI__3B75D760" Association="Self.FK__SYSUserRo__UserI__3B75D760">
+            <End Role="SYSUser" EntitySet="SYSUsers" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ItchGamingWikiModelStoreContainer" CdmEntityContainer="ItchGamingWikiEntities">
+          <EntitySetMapping Name="GameReviews">
+            <EntityTypeMapping TypeName="ItchGamingWikiModel.GameReview">
+              <MappingFragment StoreEntitySet="GameReview">
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ContentReview" ColumnName="ContentReview" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="ItchGamingWikiModel.Game">
+              <MappingFragment StoreEntitySet="Games">
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="GameName" ColumnName="GameName" />
+                <ScalarProperty Name="GameType" ColumnName="GameType" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="ReleasedDate" ColumnName="ReleasedDate" />
+                <ScalarProperty Name="Developer" ColumnName="Developer" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="LinkGame" ColumnName="LinkGame" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="ItchGamingWikiModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Position_Id" ColumnName="Position_Id" />
+                <ScalarProperty Name="PositionCode" ColumnName="PositionCode" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="LevelCV" ColumnName="LevelCV" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSGroupGames">
+            <EntityTypeMapping TypeName="ItchGamingWikiModel.SYSGroupGame">
+              <MappingFragment StoreEntitySet="SYSGroupGame">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupCode" ColumnName="GroupCode" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSGroupRoles">
+            <EntityTypeMapping TypeName="ItchGamingWikiModel.SYSGroupRole">
+              <MappingFragment StoreEntitySet="SYSGroupRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="RoleView" ColumnName="RoleView" />
+                <ScalarProperty Name="RoleAdd" ColumnName="RoleAdd" />
+                <ScalarProperty Name="RoleEdit" ColumnName="RoleEdit" />
+                <ScalarProperty Name="RoleDelete" ColumnName="RoleDelete" />
+                <ScalarProperty Name="RoleImport" ColumnName="RoleImport" />
+                <ScalarProperty Name="RoleExport" ColumnName="RoleExport" />
+                <ScalarProperty Name="RolePrint" ColumnName="RolePrint" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSGroupUsers">
+            <EntityTypeMapping TypeName="ItchGamingWikiModel.SYSGroupUser">
+              <MappingFragment StoreEntitySet="SYSGroupUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSMenus">
+            <EntityTypeMapping TypeName="ItchGamingWikiModel.SYSMenu">
+              <MappingFragment StoreEntitySet="SYSMenu">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ParentType" ColumnName="ParentType" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="UrlLink" ColumnName="UrlLink" />
+                <ScalarProperty Name="UrlName" ColumnName="UrlName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="StyleHTML" ColumnName="StyleHTML" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSUsers">
+            <EntityTypeMapping TypeName="ItchGamingWikiModel.SYSUser">
+              <MappingFragment StoreEntitySet="SYSUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Last_ip" ColumnName="Last_ip" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSUserRoles">
+            <EntityTypeMapping TypeName="ItchGamingWikiModel.SYSUserRole">
+              <MappingFragment StoreEntitySet="SYSUserRole">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="RoleView" ColumnName="RoleView" />
+                <ScalarProperty Name="RoleAdd" ColumnName="RoleAdd" />
+                <ScalarProperty Name="RoleEdit" ColumnName="RoleEdit" />
+                <ScalarProperty Name="RoleImport" ColumnName="RoleImport" />
+                <ScalarProperty Name="RoleExport" ColumnName="RoleExport" />
+                <ScalarProperty Name="RolePrint" ColumnName="RolePrint" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="RoleDelete" ColumnName="RoleDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
