@@ -14,6 +14,11 @@ namespace ItchGamingWiki.Controllers
         public ActionResult Index(string captchaText)
         {
 
+            Random random = new Random();
+            for (int i = 0; i < 3; i++)
+            {
+                
+            }
             return View();
         }
 
