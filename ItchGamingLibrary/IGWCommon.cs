@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ItchGamingLibrary
 {
-    public class IGWCommon
+    public static class IGWCommon
     {
         // Convert DateTime to string ddMMyyyy
         public static string DateToStringDdMmYyyy(DateTime dateTime)
