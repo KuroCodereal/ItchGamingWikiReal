@@ -5,13 +5,19 @@ VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItchGamingWiki", "ItchGamingWiki\ItchGamingWiki.csproj", "{CD5A775D-624C-4B2C-B75C-2B707B59B592}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItchGamingLibrary", "ItchGamingLibrary\ItchGamingLibrary.csproj", "{5A28E328-0126-45B3-8E5A-060CAFB65431}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItchGamingLibrary", "ItchGamingLibrary\ItchGamingLibrary.csproj", "{5A28E328-0126-45B3-8E5A-060CAFB65431}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItchGamingLibrary.Files", "ItchGamingLibrary.Files\ItchGamingLibrary.Files.csproj", "{7D0630D3-A7FC-4012-ADC5-94A6C2D0FBB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItchGamingLibrary.Files", "ItchGamingLibrary.Files\ItchGamingLibrary.Files.csproj", "{7D0630D3-A7FC-4012-ADC5-94A6C2D0FBB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItchGamingModel", "ItchGamingModel\ItchGamingModel.csproj", "{32179DA5-4055-4948-A95C-B5B04095EBD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItchGamingModel", "ItchGamingModel\ItchGamingModel.csproj", "{32179DA5-4055-4948-A95C-B5B04095EBD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItchGamingDTO", "ItchGamingDTO\ItchGamingDTO.csproj", "{713FFA0D-AB8C-49D1-B144-9DA361BF8000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItchGamingDTO", "ItchGamingDTO\ItchGamingDTO.csproj", "{713FFA0D-AB8C-49D1-B144-9DA361BF8000}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGW.Files", "IGW.Files\IGW.Files.csproj", "{721F99D3-3F3A-447B-A6E6-FF6D5B969A27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGWLibrary", "IGWLibrary\IGWLibrary.csproj", "{A4A52F98-A55F-41B7-8A6E-F570EEC18787}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItchGamingModels", "ItchGamingModels\ItchGamingModels.csproj", "{8BF26FC1-CCF5-4ECE-A2B2-9A181565A83B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{713FFA0D-AB8C-49D1-B144-9DA361BF8000}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{713FFA0D-AB8C-49D1-B144-9DA361BF8000}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{713FFA0D-AB8C-49D1-B144-9DA361BF8000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{721F99D3-3F3A-447B-A6E6-FF6D5B969A27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{721F99D3-3F3A-447B-A6E6-FF6D5B969A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{721F99D3-3F3A-447B-A6E6-FF6D5B969A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{721F99D3-3F3A-447B-A6E6-FF6D5B969A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4A52F98-A55F-41B7-8A6E-F570EEC18787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4A52F98-A55F-41B7-8A6E-F570EEC18787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4A52F98-A55F-41B7-8A6E-F570EEC18787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4A52F98-A55F-41B7-8A6E-F570EEC18787}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BF26FC1-CCF5-4ECE-A2B2-9A181565A83B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BF26FC1-CCF5-4ECE-A2B2-9A181565A83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF26FC1-CCF5-4ECE-A2B2-9A181565A83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BF26FC1-CCF5-4ECE-A2B2-9A181565A83B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
