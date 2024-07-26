@@ -111,6 +111,8 @@
     <Compile Include="Excel\ExcelExport.cs" />
     <Compile Include="Excel\ExcelGemBox.cs" />
     <Compile Include="Excel\ExcelImport.cs" />
+    <Compile Include="IGWFileContentType.cs" />
+    <Compile Include="IGWZipFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
