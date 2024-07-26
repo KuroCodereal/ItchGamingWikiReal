@@ -11,7 +11,7 @@ namespace ItchGamingWiki.Controllers
 {
     public class LogInController : Controller
     {
-        private readonly ItchGamingWikiEntities db = new ItchGamingWikiEntities ();
+        private readonly ItchGamingWikiEntities db = new ItchGamingWikiEntities();
         //GET: Login
         public ActionResult Index(string captchaText)
         {
