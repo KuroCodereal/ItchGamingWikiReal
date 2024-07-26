@@ -370,7 +370,7 @@ namespace IGW.Files
                 {
                     case "PDF":
                         FileType = "application/pdf";
-                        breal;
+                        break;
                     case "DOC":
                         FileType = "application/msword";
                         break;
