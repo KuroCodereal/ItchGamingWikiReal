@@ -24,7 +24,7 @@ namespace ItchGamingLibrary
         }
 
         //Convert datetime to YyMmDdHhMmSs
-        public static string DateToYyMmDdHhMmSs(DateTime dateTime)
+        public static string DateToStringYyMmDdHhMmSs(DateTime dateTime)
         { 
             if(dateTime == null) return String.Empty;
             return dateTime.Year.ToString().Substring(2, 2) + dateTime.Month.ToString().PadLeft(2, '0') + dateTime.Day.ToString().PadLeft(2, '0')
@@ -32,7 +32,7 @@ namespace ItchGamingLibrary
         }
 
         //Convert datetime to YyyyMmDdHhMmSs
-        public static string DateToYyyyMmDdHhMmSs(DateTime dateTime)
+        public static string DateToStringYyyyMmDdHhMmSs(DateTime dateTime)
         {
             if (dateTime == null) return String.Empty;
             return dateTime.Year.ToString() + dateTime.Month.ToString().PadLeft(2, '0') + dateTime.Day.ToString().PadLeft(2, '0')
