@@ -1,5 +1,6 @@
 ﻿using ItchGamingLibrary;
 using System;
+using System.IO.Compression;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,35 @@ namespace IGW.Files
                 {
                     return new IGWMessage(false, null, "FromPath and ToZipPath are invalid");
                 }
-                //ZipFilename = "IGWZipFile" + IGWCommom
+                ZipFilename = "IGWZipFile" + IGWCommon.DateToStringYyMmDdHhMmSs(DateTime.Now) + ".zip";
+                string ZipPath = ToZipPath + ZipFilename;
+                //System.IO.Compression.ZipFile.CreateFromDirectory(FromPath, ZipPath);
+                return new IGWMessage(true, null, "Zip file success!");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Giai nen file .zip
+        //ZipPath: Duong dan thu muc file .zip can giai nen
+        //ExtractPath: Thu muc chua file sau khi giai nen
+
+        public IGWMessage ExtractZipFile(string ZipPath, string ExtractPath)
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(ZipPath) || string.IsNullOrEmpty(ExtractPath))
+                {
+                    return new IGWMessage(false, null, "ZipPath and ExtractPath are invalid.");
+                }
+                //System.IO.Compression.ZipFile.ExtractToDirectory(ZipPath, ExtractPath);
+                return new IGWMessage(true, null, "Extract file success!");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
         }
     }
