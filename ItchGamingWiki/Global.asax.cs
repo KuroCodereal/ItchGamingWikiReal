@@ -14,24 +14,24 @@ namespace ItchGamingWiki
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //AreaRegistration.RegisterAllAreas();
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //Ẩn X-AspNetMVC-Version trong Response Headers trả về Client
-            MvcHandler.DisableMvcResponseHeader = true;
+            //MvcHandler.DisableMvcResponseHeader = true;
             //Map cac object qua lai
-            AutoMapperConfig.Initialize();
+            //AutoMapperConfig.Initialize();
             // Để thông báo cho trình duyệt từ chối đưa website của bạn vào khung iframe
             //HttpContext.Current.Response.AddHeader("x-frame-options", "DENY");
-            Newtonsoft.Json.JsonConvert.DefaultSettings = () => new Newtonsoft.Json.JsonSerializerSettings
-            {
-                Formatting = Newtonsoft.Json.Formatting.Indented,
-                ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            };
-            Z.EntityFramework.Extensions.LicenseManager.AddLicense(KEYWORD_PAGE.ZEFExtensionSQLServerName, KEYWORD_PAGE.ZEFExtensionSQLServerKey);
-            Z.EntityFramework.Extensions.LicenseManager.AddLicense(KEYWORD_PAGE.ZBulkOperationSQLServerName,KEYWORD_PAGE.ZBulkOperationSQLServerKey);
+            //Newtonsoft.Json.JsonConvert.DefaultSettings = () => new Newtonsoft.Json.JsonSerializerSettings
+            //{
+            //    Formatting = Newtonsoft.Json.Formatting.Indented,
+            //    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            //};
+            //Z.EntityFramework.Extensions.LicenseManager.AddLicense(KEYWORD_PAGE.ZEFExtensionSQLServerName, KEYWORD_PAGE.ZEFExtensionSQLServerKey);
+            //Z.EntityFramework.Extensions.LicenseManager.AddLicense(KEYWORD_PAGE.ZBulkOperationSQLServerName,KEYWORD_PAGE.ZBulkOperationSQLServerKey);
         }
         protected void Application_PreSendRequestHeaders()
         {

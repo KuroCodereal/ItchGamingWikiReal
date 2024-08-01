@@ -36,7 +36,7 @@
             <div class="container-fluid height100" style="padding:7.5px 7.5px">
                 <div class="card mb0px height100">
                     <div class="card-body padding0px" style="overflow-y:auto;overflow-x:hidden;">
-                        <div class="bgimg col-md-8 col-lg-9 text-center white row height100" style="background: url(/Content/images/3.jpg) no-repeat;background-size:100% 100%;overflow-y:auto;overflow-x:hidden;margin:0;padding-right:15px">
+                        <div class="bgimg col-md-8 col-lg-9 text-center white row" style="background: url(/Content/images/3.jpg) no-repeat;background-size:100% 100%;overflow-y:auto;overflow-x:hidden;margin:0;padding-right:15px">
                             <img src="" class="mt20" />
                             <h1 class="text-center text-uppercase" style=""></h1>
                             <h5 class="italic text-center"></h5>
@@ -47,7 +47,6 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 padding0px" >
-                            <img src="" class="wid100 hidden" />
                             <div class="content-login text-center form-login">
                                 <div class="nav-log" style="text-align:center;background-color:#0b5aa51a;width:100%;height:5%">
                                     LOGIN
@@ -76,11 +75,13 @@
                                         </div>
                                         <div class="form-group">
                                             <div>Enter Captcha</div>
-                                            <div class="captcha-login">
-                                                
-                                            </div>
-                                            <div class="red">
-
+                                            <div style="display:flex">
+                                                <div class="captcha-login">
+                                                    <img src="@ViewBag.captcha" />
+                                                </div>
+                                                <div class="red">
+                                                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -94,7 +95,7 @@
                                         </div>
                                         <button type="submit" class="btn" style=""><i class="fa fa-sign-in"></i>&nbsp;Log In</button>
                                         <div class="text-center register">
-                                            <i class="fa fa-user-plus" aria-hidden="true"></i> Register new account
+                                            <a style="cursor:pointer"><i class="fa fa-user-plus" aria-hidden="true"></i> Register new account</a>
                                         </div>
                                     </form>
                                 </div>
