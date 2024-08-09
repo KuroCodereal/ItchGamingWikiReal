@@ -84,6 +84,7 @@ namespace ItchGamingWiki.Controllers
             User us = SessionHelper.getSession();
             if (us != null)
             {
+
                 return View();
             }
 

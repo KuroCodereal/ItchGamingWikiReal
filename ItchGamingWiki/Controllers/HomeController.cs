@@ -12,6 +12,7 @@ namespace ItchGamingWiki.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 
